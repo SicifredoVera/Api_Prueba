@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Tipoempleado;
 
 class tipoempleadoController extends Controller
 {
@@ -13,19 +14,11 @@ class tipoempleadoController extends Controller
      */
     public function index()
     {
-        //
+        $tipoempleado= Tipoempleado::all();
+        return response()->json(['tipoempleado'=>$tipoempleado, 'code'=>'200']) ;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -34,7 +27,13 @@ class tipoempleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         if(empty($request->descripcion)) {
+            return response()->json(['message'=>'Todos los campos son requeridos', 'code'=>'406']);
+        }
+        $tipoempleado = new Tipoempleado();
+        $tipoempleado->descripcion=$request->descripcion;
+        $tipoempleado->save();
+        return response()->json(['message'=>'Tipoempleado creado correctamente', 'code'=>'201']);
     }
 
     /**
@@ -45,19 +44,15 @@ class tipoempleadoController extends Controller
      */
     public function show($id)
     {
-        //
+        $tipoempleado= Tipoempleado::find($id);
+       if((empty($tipoempleado))){
+        return response()->json(['message'=>'tipoempleado no encontrado', 'code'=>'404']) ;
+       }
+
+       return response()->json(['tipoempleado'=>$tipoempleado, 'code'=>'200']) ;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -68,7 +63,21 @@ class tipoempleadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         if(empty($request->descripcion)) {
+
+            return response()->json(['message'=>'Todos los campos son requeridos', 'code'=>'406']);
+        }
+
+
+        $tipoempleado=Tipoempleado::find($id);
+        if(empty($tipoempleado)){
+
+                return response()->json(['message'=>'TipoEmpleado no encontrado', 'code'=>'404']);
+        }
+        
+        $tipoempleado->descripcion=$request->descripcion;
+        $tipoempleado->save();
+        return response()->json(['message'=>'TipoEmpleado actualizado', 'code'=>'200']);
     }
 
     /**
@@ -79,6 +88,20 @@ class tipoempleadoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(empty($id)) {
+
+            return response()->json(['message'=>'el id es obligatorio', 'code'=>'406']);
+        }
+
+
+        $tipoempleado=Tipoempleado::find($id);
+        if(empty($tipoempleado)){
+
+                return response()->json(['message'=>'tipoempleado no encontrado', 'code'=>'404']);
+        }
+        
+        $tipoempleado->delete();
+
+        return response()->json(['message'=>'tipoempleado borrado', 'code'=>'200']);
     }
 }
