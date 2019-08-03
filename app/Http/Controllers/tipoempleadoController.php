@@ -8,23 +8,57 @@ use App\Tipoempleado;
 class tipoempleadoController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ * @SWG\Swagger(
+ *   basePath="/api/v0",
+ *   @SWG\Info(
+ *     title="API TIPO_EMPLEADO ISIDRO",
+ *     version="1.0.0"
+ *   )
+ * )
+ */
+
+/**
+ * @SWG\Get(
+ *   path="/tipoempleado",
+ *   tags={"Tipo de Empleados"},
+ *   summary="Obtener Tipo_Empleado",
+ *   operationId="getCustomerRates",
+ *   @SWG\Response(response=200, description="successful operation"),
+ *   @SWG\Response(response=406, description="not acceptable"),
+ *   @SWG\Response(response=500, description="internal server error")
+ * )
+ *
+ */
     public function index()
     {
         $tipoempleado= Tipoempleado::all();
         return response()->json(['tipoempleado'=>$tipoempleado, 'code'=>'200']) ;
     }
 
-    
-    /**
-     * Store a newly created resource in storage.
+/**
+     * @SWG\Post(
+     *   path="/tipoempleado",
+     *   tags={"Tipo de Empleados"},
+     *   summary="Ingresar Tipo_Empleado",
+     *   operationId="getCustomerRates2",
+     *   @SWG\Parameter(
+     *     name="descripcion",
+     *     in="formData",
+     *     description="Ingrese Tipo_Empleado",
+     *     required=true,
+     *     type="string"
+     *     ),
+     *   @SWG\Response(response=200, description="successful operation"),
+     *   @SWG\Response(response=404, description="not found"),)
+     * )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
+
+
+
+
+  
+
     public function store(Request $request)
     {
          if(empty($request->descripcion)) {
@@ -36,12 +70,28 @@ class tipoempleadoController extends Controller
         return response()->json(['message'=>'Tipoempleado creado correctamente', 'code'=>'201']);
     }
 
-    /**
-     * Display the specified resource.
+    
+/**
+     * @SWG\Get(
+     *   path="/tipoempleado/{id}",
+     *   tags={"Tipo de Empleados"},
+     *   summary="Obtener Tipo_Empleado con Id",
+     *   operationId="getRed",
+     *   @SWG\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="Ingrese el id de tipoempleado a buscar",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Response(response=200, description="datos obtenidos correctamente"),
+     *   @SWG\Response(response=404, description="el id de red existe"),
+     *   @SWG\Response(response=422, description="no se permiten valores nulos"),
+     * )
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
+
+
     public function show($id)
     {
         $tipoempleado= Tipoempleado::find($id);
@@ -55,12 +105,36 @@ class tipoempleadoController extends Controller
     
 
     /**
-     * Update the specified resource in storage.
+     * @SWG\Put(
+     *   path="/tipoempleado/{id}",
+     *   tags={"Tipo de Empleados"},
+     *   summary="Actualizar TipoEmpleado",
+     *   operationId="sharedRed",
+     *   @SWG\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="Ingrese el ID a Modificar",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="descripcion",
+     *     in="formData",
+     *     description="ingresar el tipo empleado",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Response(response=200, description="datos obtenidos correctamente"),
+     *   @SWG\Response(response=404, description="usuario no encontrado"),
+     *   @SWG\Response(response=422, description="no se permiten valores nulos"),
+     * )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
+
+
+
+
+
     public function update(Request $request, $id)
     {
          if(empty($request->descripcion)) {
@@ -80,11 +154,27 @@ class tipoempleadoController extends Controller
         return response()->json(['message'=>'TipoEmpleado actualizado', 'code'=>'200']);
     }
 
-    /**
-     * Remove the specified resource from storage.
+   
+
+
+
+   /**
+     * @SWG\Delete(
+     *   path="/tipoempleado/{id}",
+     *   tags={"Tipo de Empleados"},
+     *   summary="Eliminar Tipo_Empleado",
+     *   operationId="deleteTipoEmpleado",
+     *   @SWG\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="ingresar el id de tipoempleado a Eliminar",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Response(response=204, description="Tipo_Empleado eliminado correctamente"),
+     *   @SWG\Response(response=404, description="Tipo_Empleado no encontrado"),
+     * )
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {

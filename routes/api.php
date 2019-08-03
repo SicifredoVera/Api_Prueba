@@ -25,4 +25,4 @@ Route::get('/user', function (Request $request) {
 //});
 
 Route::resource('v0/tipoempleado','tipoempleadoController');
-Route::resource('v1/empleado','empleadoController');
+Route::resource('v0/empleado','empleadoController');

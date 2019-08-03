@@ -8,11 +8,23 @@ use App\Tipoempleado;
 //use App\Tipoempleado;
 class empleadoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+      
+
+/**
+ * @SWG\Get(
+ *   path="/empleado",
+ *   tags={"Empleados"},
+ *   summary="Obtener Empleado",
+ *   operationId="getCustomerRates",
+ *   @SWG\Response(response=200, description="successful operation"),
+ *   @SWG\Response(response=406, description="not acceptable"),
+ *   @SWG\Response(response=500, description="internal server error")
+ * )
+ *
+ */
+
+
+
     public function index()
     {
         $empleado= Empleado::all();
@@ -20,13 +32,47 @@ class empleadoController extends Controller
     }
 
     
-
-    /**
-     * Store a newly created resource in storage.
+/**
+     * @SWG\Post(
+     *   path="/empleado",
+     *   tags={"Empleados"},
+     *   summary="Ingresar Empleado",
+     *   operationId="getCustomerRates1",
+     *   @SWG\Parameter(
+     *     name="nombre",
+     *     in="formData",
+     *     description="Ingrese nombre Empleado",
+     *     required=true,
+     *     type="string"
+     *     ),
+     *     @SWG\Parameter(
+     *     name="apellido",
+     *     in="formData",
+     *     description="Ingrese apellido Empleado",
+     *     required=true,
+     *     type="string"
+     *     ),
+     *     @SWG\Parameter(
+     *     name="cedula",
+     *     in="formData",
+     *     description="Ingrese cedula Empleado",
+     *     required=true,
+     *     type="string"
+     *     ),
+     *     @SWG\Parameter(
+     *     name="tipoempleadoid",
+     *     in="formData",
+     *     description="Ingrese id Tipo_Empleado",
+     *     required=true,
+     *     type="string"
+     *     ),
+     *   @SWG\Response(response=200, description="successful operation"),
+     *   @SWG\Response(response=404, description="not found"),)
+     * )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
+
+
     public function store(Request $request)
     {
          if(empty($request->nombre) || empty($request->apellido)|| empty($request->cedula)|| empty($request->tipoempleadoid)) {
@@ -49,11 +95,26 @@ class empleadoController extends Controller
         return response()->json(['message'=>'Empleado creado correctamente', 'code'=>'201']);
     }
 
+
+
     /**
-     * Display the specified resource.
+     * @SWG\Get(
+     *   path="/empleado/{id}",
+     *   tags={"Empleados"},
+     *   summary="Obtener Empleado con Id",
+     *   operationId="getRed",
+     *   @SWG\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="Ingrese el id de empleado a buscar",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Response(response=200, description="datos obtenidos correctamente"),
+     *   @SWG\Response(response=404, description="el id de empleado no existe"),
+     *   @SWG\Response(response=422, description="no se permiten valores nulos"),
+     * )
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -67,11 +128,51 @@ class empleadoController extends Controller
     
 
     /**
-     * Update the specified resource in storage.
+     * @SWG\Put(
+     *   path="/empleado/{id}",
+     *   tags={"Empleados"},
+     *   summary="Actualizar Empleado",
+     *   operationId="sharedRed",
+     *   @SWG\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="Ingrese el ID a Modificar",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="nombre",
+     *     in="formData",
+     *     description="ingresar nombre empleado",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="apellido",
+     *     in="formData",
+     *     description="ingresar apellido empleado",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="cedula",
+     *     in="formData",
+     *     description="ingresar cedula empleado",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="tipoempleadoid",
+     *     in="formData",
+     *     description="ingresar el tipo empleado",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Response(response=200, description="datos obtenidos correctamente"),
+     *   @SWG\Response(response=404, description="usuario no encontrado"),
+     *   @SWG\Response(response=422, description="no se permiten valores nulos"),
+     * )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -101,11 +202,27 @@ class empleadoController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @SWG\Delete(
+     *   path="/empleado/{id}",
+     *   tags={"Empleados"},
+     *   summary="Eliminar Empleado",
+     *   operationId="delete Empleado",
+     *   @SWG\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="Ingresar el id de empleado a Eliminar",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Response(response=204, description="Empleado eliminado correctamente"),
+     *   @SWG\Response(response=404, description="Empleado no encontrado"),
+     * )
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
+    
+
+
+
     public function destroy($id)
     {
          if(empty($id)) {

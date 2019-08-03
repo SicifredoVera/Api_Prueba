@@ -1,0 +1,315 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "API TIPO_EMPLEADO ISIDRO",
+        "version": "1.0.0"
+    },
+    "basePath": "/api/v0",
+    "paths": {
+        "/empleado": {
+            "get": {
+                "tags": [
+                    "Empleados"
+                ],
+                "summary": "Obtener Empleado",
+                "operationId": "getCustomerRates",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "406": {
+                        "description": "not acceptable"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Empleados"
+                ],
+                "summary": "Ingresar Empleado",
+                "operationId": "getCustomerRates1",
+                "parameters": [
+                    {
+                        "name": "nombre",
+                        "in": "formData",
+                        "description": "Ingrese nombre Empleado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "apellido",
+                        "in": "formData",
+                        "description": "Ingrese apellido Empleado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cedula",
+                        "in": "formData",
+                        "description": "Ingrese cedula Empleado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "tipoempleadoid",
+                        "in": "formData",
+                        "description": "Ingrese id Tipo_Empleado",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "/empleado/{id}": {
+            "get": {
+                "tags": [
+                    "Empleados"
+                ],
+                "summary": "Obtener Empleado con Id",
+                "operationId": "getRed",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ingrese el id de empleado a buscar",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "datos obtenidos correctamente"
+                    },
+                    "404": {
+                        "description": "el id de empleado no existe"
+                    },
+                    "422": {
+                        "description": "no se permiten valores nulos"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Empleados"
+                ],
+                "summary": "Actualizar Empleado",
+                "operationId": "sharedRed",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ingrese el ID a Modificar",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "nombre",
+                        "in": "formData",
+                        "description": "ingresar nombre empleado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "apellido",
+                        "in": "formData",
+                        "description": "ingresar apellido empleado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cedula",
+                        "in": "formData",
+                        "description": "ingresar cedula empleado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "tipoempleadoid",
+                        "in": "formData",
+                        "description": "ingresar el tipo empleado",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "datos obtenidos correctamente"
+                    },
+                    "404": {
+                        "description": "usuario no encontrado"
+                    },
+                    "422": {
+                        "description": "no se permiten valores nulos"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Empleados"
+                ],
+                "summary": "Eliminar Empleado",
+                "operationId": "delete Empleado",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ingresar el id de empleado a Eliminar",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Empleado eliminado correctamente"
+                    },
+                    "404": {
+                        "description": "Empleado no encontrado"
+                    }
+                }
+            }
+        },
+        "/tipoempleado": {
+            "get": {
+                "tags": [
+                    "Tipo de Empleados"
+                ],
+                "summary": "Obtener Tipo_Empleado",
+                "operationId": "getCustomerRates",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "406": {
+                        "description": "not acceptable"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tipo de Empleados"
+                ],
+                "summary": "Ingresar Tipo_Empleado",
+                "operationId": "getCustomerRates2",
+                "parameters": [
+                    {
+                        "name": "descripcion",
+                        "in": "formData",
+                        "description": "Ingrese Tipo_Empleado",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "/tipoempleado/{id}": {
+            "get": {
+                "tags": [
+                    "Tipo de Empleados"
+                ],
+                "summary": "Obtener Tipo_Empleado con Id",
+                "operationId": "getRed",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ingrese el id de tipoempleado a buscar",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "datos obtenidos correctamente"
+                    },
+                    "404": {
+                        "description": "el id de red existe"
+                    },
+                    "422": {
+                        "description": "no se permiten valores nulos"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Tipo de Empleados"
+                ],
+                "summary": "Actualizar TipoEmpleado",
+                "operationId": "sharedRed",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ingrese el ID a Modificar",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "descripcion",
+                        "in": "formData",
+                        "description": "ingresar el tipo empleado",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "datos obtenidos correctamente"
+                    },
+                    "404": {
+                        "description": "usuario no encontrado"
+                    },
+                    "422": {
+                        "description": "no se permiten valores nulos"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Tipo de Empleados"
+                ],
+                "summary": "Eliminar Tipo_Empleado",
+                "operationId": "deleteTipoEmpleado",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ingresar el id de tipoempleado a Eliminar",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Tipo_Empleado eliminado correctamente"
+                    },
+                    "404": {
+                        "description": "Tipo_Empleado no encontrado"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
